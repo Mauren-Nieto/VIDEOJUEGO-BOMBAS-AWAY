@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Mario : MonoBehaviour
+public class mario2 : MonoBehaviour
 {
     //Define la velocidad del personaje, se mide en metros por segundo
     //El personaje se mueve a 5 m/s
@@ -19,6 +19,10 @@ public class Mario : MonoBehaviour
     Animator animator;
     //La fuente de sonido, sirve para poner un sonido
     AudioSource audioSource;
+
+    // Definimos las fronteras de la isla
+    public float limiteIslaX = 10f;
+    public float limiteIslaZ = 10f;
 
 
     // Este método se ejecuta una sola vez al inicio de cada objeto
@@ -77,7 +81,36 @@ public class Mario : MonoBehaviour
             audioSource.Play();
         }
     }
-    
+
+    // Método para limitar la posición del personaje dentro de las fronteras de la isla
+    private void LimitarPosicion()
+    {
+        Vector3 posicionActual = transform.position;
+
+        // Limitamos la posición en el eje X
+        if (posicionActual.x < -limiteIslaX)
+        {
+            posicionActual.x = -limiteIslaX;
+        }
+        else if (posicionActual.x > limiteIslaX)
+        {
+            posicionActual.x = limiteIslaX;
+        }
+
+        // Limitamos la posición en el eje Z
+        if (posicionActual.z < -limiteIslaZ)
+        {
+            posicionActual.z = -limiteIslaZ;
+        }
+        else if (posicionActual.z > limiteIslaZ)
+        {
+            posicionActual.z = limiteIslaZ;
+        }
+
+        // Aplicamos la posición limitada al personaje
+        transform.position = posicionActual;
+    }
+
 
 
 }
