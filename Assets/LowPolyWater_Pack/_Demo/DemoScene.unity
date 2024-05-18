@@ -384,7 +384,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299647569}
   m_LocalRotation: {x: 0.5062371, y: -0, z: -0, w: 0.86239433}
-  m_LocalPosition: {x: 0, y: 0, z: 11.2}
+  m_LocalPosition: {x: 0, y: 0, z: 4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -392,7 +392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 60.827, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1014, y: -526.3}
+  m_AnchoredPosition: {x: -454, y: -257}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299647571
@@ -543,13 +543,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaunchPoint: {fileID: 399237109}
   bulletPrefab: {fileID: 5063774823192369251, guid: db4c7a2f05383004abcbc312ecc092ca, type: 3}
-  launchSpeed: 26
-  maxLaunchAngle: 20
+  launchSpeed: 27
+  maxLaunchAngle: 45
   minTimeToExplode: 100
-  bounceForce: 9
+  bounceForce: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 1.5
+  explosionSound: {fileID: 0}
+  fireRate: 1
+  islandCollider: {fileID: 1410281107}
 --- !u!114 &399237112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,7 +622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -670.74, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -1006.5, y: -19}
+  m_AnchoredPosition: {x: -473, y: 0.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &416815431
@@ -665,7 +666,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416815429}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &416815433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1008,6 +1009,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7678857814308203896, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1557986775}
+    - targetCorrespondingSourceObject: {fileID: 7678857814308203896, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1557986779}
   m_SourcePrefab: {fileID: 100100000, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
 --- !u!1001 &668323790
 PrefabInstance:
@@ -1370,27 +1374,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9866738
+      value: 0.98500633
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.16271119
+      value: -0.1716162
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.0014546214
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -9.25204e-10
+      value: 0.017555345
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -18.729
+      value: -19.763
+      objectReference: {fileID: 0}
+    - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.192
       objectReference: {fileID: 0}
     - target: {fileID: 5453221009466518168, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 2.076
       objectReference: {fileID: 0}
     - target: {fileID: 6837354146437406712, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       propertyPath: m_Name
@@ -1768,13 +1776,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaunchPoint: {fileID: 1557986774}
   bulletPrefab: {fileID: 5063774823192369251, guid: db4c7a2f05383004abcbc312ecc092ca, type: 3}
-  launchSpeed: 26
-  maxLaunchAngle: 20
+  launchSpeed: 27
+  maxLaunchAngle: 45
   minTimeToExplode: 100
   bounceForce: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 0.8
+  explosionSound: {fileID: 0}
+  fireRate: 1.3
+  islandCollider: {fileID: 1410281107}
+--- !u!81 &1557986779
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557986773}
+  m_Enabled: 1
 --- !u!1 &1570185926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,13 +2176,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LaunchPoint: {fileID: 2131650036}
   bulletPrefab: {fileID: 5063774823192369251, guid: db4c7a2f05383004abcbc312ecc092ca, type: 3}
-  launchSpeed: 26
-  maxLaunchAngle: 20
+  launchSpeed: 27
+  maxLaunchAngle: 45
   minTimeToExplode: 100
   bounceForce: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 1
+  explosionSound: {fileID: 0}
+  fireRate: 0.8
+  islandCollider: {fileID: 1410281107}
 --- !u!4 &2137454222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8034608801130511726, guid: 9a80abcf114658446a8940a7a8003409, type: 3}

@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f6b99e01861004dad29f2028993edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeToExplode: 2.6
+  minTimeToExplode: 4
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}

@@ -7,58 +7,80 @@ public class Bullet_Launcher1 : MonoBehaviour
     public Transform LaunchPoint;
     public GameObject bulletPrefab;
     public float launchSpeed = 10f;
-    public float maxLaunchAngle = 20f;
+    public float maxLaunchAngle = 45f; // Ángulo máximo de lanzamiento
     public float minTimeToExplode = 0.5f;
     public float bounceForce = 2f;
 
     public AudioClip launchSound; // Sonido del lanzamiento de la bomba
     public AudioClip explosionSound; // Sonido de la explosión de la bomba
 
+    public float fireRate = 2f; // Tiempo en segundos entre disparos
+    private float nextFireTime;
+
+    public MeshCollider islandCollider;
+
     private AudioSource audioSource;
-    public float launchInterval = 2f; // Intervalo entre lanzamientos
-    private float launchTimer;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        launchTimer = launchInterval;
+        nextFireTime = Time.time;
     }
 
     void Update()
     {
-        if (!GameManager.Instance.GameEnded)
+        if (Time.time > nextFireTime)
         {
-            launchTimer -= Time.deltaTime;
-            if (launchTimer <= 0f)
-            {
-                LaunchBullet();
-                launchTimer = launchInterval;
-            }
+            LaunchBullet();
+            nextFireTime = Time.time + fireRate;
         }
     }
 
     void LaunchBullet()
     {
+        // Reproducir sonido de lanzamiento
         if (launchSound != null)
         {
             audioSource.PlayOneShot(launchSound);
         }
 
-        float launchAngle = Random.Range(-maxLaunchAngle, maxLaunchAngle);
-        Quaternion rotation = Quaternion.Euler(launchAngle, 0f, 0f);
+        // Calcula una posición aleatoria dentro del colisionador de la isla
+        Vector3 randomPoint = GetRandomPointInCollider(islandCollider);
 
-        GameObject bullet = Instantiate(bulletPrefab, LaunchPoint.position, rotation);
+        // Calcula la dirección de lanzamiento con un ángulo aleatorio
+        Vector3 direction = (randomPoint - LaunchPoint.position).normalized;
+        float angle = Random.Range(-maxLaunchAngle, maxLaunchAngle);
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.right);
+        Vector3 launchDirection = rotation * direction;
+
+        // Crea y lanza la bala
+        GameObject bullet = Instantiate(bulletPrefab, LaunchPoint.position, Quaternion.LookRotation(launchDirection));
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = LaunchPoint.forward * launchSpeed;
+        bulletRigidbody.velocity = launchDirection * launchSpeed;
 
+        // Agrega componente de explosión
         BulletExplosion explosion = bullet.AddComponent<BulletExplosion>();
         explosion.minTimeToExplode = minTimeToExplode;
         explosion.explosionSound = explosionSound;
 
+        // Agrega componente de rebote
         BulletBounce bounce = bullet.AddComponent<BulletBounce>();
         bounce.bounceForce = bounceForce;
     }
+
+    Vector3 GetRandomPointInCollider(MeshCollider collider)
+    {
+        Bounds bounds = collider.bounds;
+        float x = Random.Range(bounds.min.x, bounds.max.x);
+        float z = Random.Range(bounds.min.z, bounds.max.z);
+        float y = bounds.max.y;
+
+        return new Vector3(x, y, z);
+    }
 }
+
+
+
 
 
 
