@@ -38,7 +38,15 @@ public class GameManager : MonoBehaviour
         mario = GameObject.FindGameObjectWithTag("Mario").GetComponent<Mario2>();
         luigi = GameObject.FindGameObjectWithTag("Luigi").GetComponent<Mario2>();
 
-        gameOverText.gameObject.SetActive(false);
+        // Asegúrate de que los textos estén activos desde el inicio
+        if (gameOverText != null)
+        {
+            gameOverText.gameObject.SetActive(false);
+        }
+        if (timerText != null)
+        {
+            timerText.gameObject.SetActive(true);
+        }
     }
 
     void Update()
@@ -46,7 +54,10 @@ public class GameManager : MonoBehaviour
         if (!gameEnded)
         {
             timeRemaining -= Time.deltaTime;
-            timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
+            if (timerText != null)
+            {
+                timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
+            }
 
             if (timeRemaining <= 0)
             {
@@ -77,7 +88,10 @@ public class GameManager : MonoBehaviour
             gameOverText.text = "It's a tie!";
         }
 
-        gameOverText.gameObject.SetActive(true);
+        if (gameOverText != null)
+        {
+            gameOverText.gameObject.SetActive(true);
+        }
 
         // Detener el lanzamiento de balas
         Bullet_Launcher1[] launchers = FindObjectsOfType<Bullet_Launcher1>();
@@ -101,6 +115,8 @@ public class GameManager : MonoBehaviour
         get { return gameEnded; }
     }
 }
+
+
 
 
 

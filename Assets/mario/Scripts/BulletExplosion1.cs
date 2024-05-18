@@ -11,6 +11,7 @@ public class BulletExplosion : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = explosionSound;
         Invoke("Explode", minTimeToExplode);
     }
 
@@ -42,6 +43,7 @@ public class BulletExplosion : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
 
 
 

@@ -301,12 +301,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -349,6 +349,7 @@ RectTransform:
   m_Children:
   - {fileID: 299647570}
   - {fileID: 416815430}
+  - {fileID: 326108207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -450,6 +451,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterScript: {fileID: 569430154}
   floatHeight: 12
+--- !u!1 &326108206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326108207}
+  - component: {fileID: 326108209}
+  - component: {fileID: 326108208}
+  m_Layer: 5
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326108207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326108206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 90438237}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326108208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326108206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &326108209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326108206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &399237108 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7678857814308203896, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
@@ -477,10 +546,10 @@ MonoBehaviour:
   launchSpeed: 26
   maxLaunchAngle: 20
   minTimeToExplode: 100
-  bounceForce: 2
+  bounceForce: 9
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 2
+  launchInterval: 1.5
 --- !u!114 &399237112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,7 +564,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterScript: {fileID: 569430154}
   floatHeight: 12
---- !u!114 &399237113
+--- !u!81 &399237114
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399237108}
+  m_Enabled: 1
+--- !u!114 &399237115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,15 +585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTimeToExplode: 100
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
---- !u!81 &399237114
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 399237108}
-  m_Enabled: 1
+  explosionSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
 --- !u!1 &416815429
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +665,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416815429}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!114 &416815433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,7 +1774,7 @@ MonoBehaviour:
   bounceForce: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 2
+  launchInterval: 0.8
 --- !u!1 &1570185926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2096,7 +2165,7 @@ MonoBehaviour:
   bounceForce: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  launchInterval: 2
+  launchInterval: 1
 --- !u!4 &2137454222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8034608801130511726, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
@@ -2256,7 +2325,7 @@ PrefabInstance:
       addedObject: {fileID: 399237110}
     - targetCorrespondingSourceObject: {fileID: 7678857814308203896, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 399237113}
+      addedObject: {fileID: 399237115}
     - targetCorrespondingSourceObject: {fileID: 7678857814308203896, guid: 9a80abcf114658446a8940a7a8003409, type: 3}
       insertIndex: -1
       addedObject: {fileID: 399237112}
