@@ -9,6 +9,9 @@ TagManager:
   - Luigi
   - Bombas
   - Isla
+  - agua
+  - timer
+  - Text
   layers:
   - Default
   - TransparentFX

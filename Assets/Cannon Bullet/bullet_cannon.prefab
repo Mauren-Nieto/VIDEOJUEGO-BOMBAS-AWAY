@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bullet_cannon
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
+      propertyPath: m_TagString
+      value: Bombas
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -85,6 +89,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1054068665111761776}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3163450280427329505}
   m_SourcePrefab: {fileID: 100100000, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
 --- !u!1 &5063774823192369251 stripped
 GameObject:
@@ -152,3 +159,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceForce: 20
+--- !u!114 &3163450280427329505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5063774823192369251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f6b99e01861004dad29f2028993edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minTimeToExplode: 2.6
+  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
