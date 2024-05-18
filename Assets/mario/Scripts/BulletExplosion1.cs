@@ -11,21 +11,24 @@ public class BulletExplosion : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = explosionSound;
         Invoke("Explode", minTimeToExplode);
+    }
+
+    public void Explode()
+    {
+        PlayExplosionSound();
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            PlayExplosionSound();
             GameManager.Instance.PlayerHit(collision.gameObject.GetComponent<Mario2>());
             Explode();
         }
         else if (collision.gameObject.CompareTag("Isla"))
         {
-            PlayExplosionSound();
             Explode();
         }
     }
@@ -37,12 +40,9 @@ public class BulletExplosion : MonoBehaviour
             audioSource.PlayOneShot(explosionSound);
         }
     }
-
-    private void Explode()
-    {
-        Destroy(gameObject);
-    }
 }
+
+
 
 
 

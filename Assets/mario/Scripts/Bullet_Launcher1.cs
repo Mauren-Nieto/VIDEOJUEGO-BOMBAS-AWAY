@@ -13,6 +13,7 @@ public class Bullet_Launcher1 : MonoBehaviour
 
     public AudioClip launchSound; // Sonido del lanzamiento de la bomba
     public AudioClip explosionSound; // Sonido de la explosión de la bomba
+    public AudioClip bounceSound; // Sonido del rebote de la bomba
 
     public float fireRate = 2f; // Tiempo en segundos entre disparos
     private float nextFireTime;
@@ -66,6 +67,7 @@ public class Bullet_Launcher1 : MonoBehaviour
         // Agrega componente de rebote
         BulletBounce bounce = bullet.AddComponent<BulletBounce>();
         bounce.bounceForce = bounceForce;
+        bounce.bounceSound = bounceSound;
     }
 
     Vector3 GetRandomPointInCollider(MeshCollider collider)
@@ -78,6 +80,7 @@ public class Bullet_Launcher1 : MonoBehaviour
         return new Vector3(x, y, z);
     }
 }
+
 
 
 

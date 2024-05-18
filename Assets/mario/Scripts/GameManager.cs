@@ -7,15 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public Text gameOverText; // Asignar en el Inspector
-    public Text timerText; // Asignar en el Inspector
-    public float gameDuration = 60f; // Duración del juego en segundos
+    public Text gameOverText;
+    public Text timerText;
+    public float gameDuration = 60f;
 
     private float timeRemaining;
     private bool gameEnded = false;
 
     private Mario2 mario;
     private Mario2 luigi;
+
+    public AudioClip marioWinClip;
+    public AudioClip luigiWinClip;
+    public AudioClip gameOverClip;
+    public AudioClip tieClip;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -34,18 +40,15 @@ public class GameManager : MonoBehaviour
     {
         timeRemaining = gameDuration;
 
-        // Encuentra a los personajes en la escena
         mario = GameObject.FindGameObjectWithTag("Mario").GetComponent<Mario2>();
         luigi = GameObject.FindGameObjectWithTag("Luigi").GetComponent<Mario2>();
 
-        // Asegúrate de que los textos estén activos desde el inicio
-        if (gameOverText != null)
+        gameOverText.gameObject.SetActive(false);
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
         {
-            gameOverText.gameObject.SetActive(false);
-        }
-        if (timerText != null)
-        {
-            timerText.gameObject.SetActive(true);
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -54,10 +57,7 @@ public class GameManager : MonoBehaviour
         if (!gameEnded)
         {
             timeRemaining -= Time.deltaTime;
-            if (timerText != null)
-            {
-                timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
-            }
+            timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
 
             if (timeRemaining <= 0)
             {
@@ -74,31 +74,60 @@ public class GameManager : MonoBehaviour
         if (mario.vidas <= 0 && luigi.vidas <= 0)
         {
             gameOverText.text = "Game Over! Both players lost!";
+            PlayGameOverAudio();
         }
         else if (mario.vidas > luigi.vidas)
         {
             gameOverText.text = "Player 1 (Mario) is the winner!";
+            PlayVictoryAudio(marioWinClip);
         }
         else if (luigi.vidas > mario.vidas)
         {
             gameOverText.text = "Player 2 (Luigi) is the winner!";
+            PlayVictoryAudio(luigiWinClip);
         }
         else
         {
             gameOverText.text = "It's a tie!";
+            PlayTieAudio();
         }
 
-        if (gameOverText != null)
-        {
-            gameOverText.gameObject.SetActive(true);
-        }
+        gameOverText.gameObject.SetActive(true);
 
-        // Detener el lanzamiento de balas
         Bullet_Launcher1[] launchers = FindObjectsOfType<Bullet_Launcher1>();
-        foreach (Bullet_Launcher1 launcher in launchers)
+        foreach (var launcher in launchers)
         {
             launcher.enabled = false;
         }
+    }
+
+    private void PlayVictoryAudio(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void PlayGameOverAudio()
+    {
+        if (gameOverClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(gameOverClip);
+        }
+    }
+
+    private void PlayTieAudio()
+    {
+        if (tieClip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(tieClip);
+        }
+    }
+
+    public bool GameEnded
+    {
+        get { return gameEnded; }
     }
 
     public void PlayerHit(Mario2 player)
@@ -109,12 +138,15 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
     }
-
-    public bool GameEnded
-    {
-        get { return gameEnded; }
-    }
 }
+
+
+
+
+
+
+
+
 
 
 
