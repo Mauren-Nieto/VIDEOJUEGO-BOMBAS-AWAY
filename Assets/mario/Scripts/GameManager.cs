@@ -78,11 +78,13 @@ public class GameManager : MonoBehaviour
         }
 
         gameOverText.gameObject.SetActive(true);
-    }
 
-    public bool GameEnded
-    {
-        get { return gameEnded; }
+        // Detener el lanzamiento de balas
+        Bullet_Launcher1[] launchers = FindObjectsOfType<Bullet_Launcher1>();
+        foreach (Bullet_Launcher1 launcher in launchers)
+        {
+            launcher.enabled = false;
+        }
     }
 
     public void PlayerHit(Mario2 player)
@@ -93,7 +95,13 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
     }
+
+    public bool GameEnded
+    {
+        get { return gameEnded; }
+    }
 }
+
 
 
 

@@ -383,7 +383,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299647569}
   m_LocalRotation: {x: 0.5062371, y: -0, z: -0, w: 0.86239433}
-  m_LocalPosition: {x: 0, y: 0, z: 19.8}
+  m_LocalPosition: {x: 0, y: 0, z: 11.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -478,9 +478,9 @@ MonoBehaviour:
   maxLaunchAngle: 20
   minTimeToExplode: 100
   bounceForce: 2
-  launchInterval: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
+  launchInterval: 2
 --- !u!114 &399237112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1703,9 +1703,9 @@ MonoBehaviour:
   maxLaunchAngle: 20
   minTimeToExplode: 100
   bounceForce: 2
-  launchInterval: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
+  launchInterval: 2
 --- !u!1 &1570185926
 GameObject:
   m_ObjectHideFlags: 0
@@ -2094,9 +2094,9 @@ MonoBehaviour:
   maxLaunchAngle: 20
   minTimeToExplode: 100
   bounceForce: 2
-  launchInterval: 2
   launchSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
   explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
+  launchInterval: 2
 --- !u!4 &2137454222 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8034608801130511726, guid: 9a80abcf114658446a8940a7a8003409, type: 3}

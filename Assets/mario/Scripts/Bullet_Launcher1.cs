@@ -10,28 +10,40 @@ public class Bullet_Launcher1 : MonoBehaviour
     public float maxLaunchAngle = 20f;
     public float minTimeToExplode = 0.5f;
     public float bounceForce = 2f;
-    public float launchInterval = 2f; // Intervalo de lanzamiento en segundos
 
     public AudioClip launchSound; // Sonido del lanzamiento de la bomba
     public AudioClip explosionSound; // Sonido de la explosión de la bomba
 
     private AudioSource audioSource;
+    public float launchInterval = 2f; // Intervalo entre lanzamientos
+    private float launchTimer;
 
-    private void Start()
+    void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        InvokeRepeating("LaunchBullet", 0f, launchInterval);
+        audioSource = GetComponent<AudioSource>();
+        launchTimer = launchInterval;
     }
 
-    private void LaunchBullet()
+    void Update()
     {
-        // Reproducir sonido de lanzamiento
+        if (!GameManager.Instance.GameEnded)
+        {
+            launchTimer -= Time.deltaTime;
+            if (launchTimer <= 0f)
+            {
+                LaunchBullet();
+                launchTimer = launchInterval;
+            }
+        }
+    }
+
+    void LaunchBullet()
+    {
         if (launchSound != null)
         {
             audioSource.PlayOneShot(launchSound);
         }
 
-        // Calcula un ángulo aleatorio dentro del rango permitido
         float launchAngle = Random.Range(-maxLaunchAngle, maxLaunchAngle);
         Quaternion rotation = Quaternion.Euler(launchAngle, 0f, 0f);
 
@@ -39,16 +51,15 @@ public class Bullet_Launcher1 : MonoBehaviour
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
         bulletRigidbody.velocity = LaunchPoint.forward * launchSpeed;
 
-        // Agrega componente de explosión
         BulletExplosion explosion = bullet.AddComponent<BulletExplosion>();
         explosion.minTimeToExplode = minTimeToExplode;
         explosion.explosionSound = explosionSound;
 
-        // Agrega componente de rebote
         BulletBounce bounce = bullet.AddComponent<BulletBounce>();
         bounce.bounceForce = bounceForce;
     }
 }
+
 
 
 

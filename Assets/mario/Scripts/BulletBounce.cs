@@ -8,17 +8,17 @@ public class BulletBounce : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verifica si la colisión es con la isla o con el agua
-        if (collision.gameObject.CompareTag("Isla") || collision.gameObject.CompareTag("agua"))
+        if (collision.gameObject.CompareTag("Isla"))
         {
             Rigidbody rb = GetComponent<Rigidbody>();
             if (rb != null)
             {
-                // Aplica una fuerza de rebote hacia arriba
-                rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
+                Vector3 bounceDirection = Vector3.Reflect(transform.forward, collision.contacts[0].normal);
+                rb.velocity = bounceDirection * bounceForce;
             }
         }
     }
 }
+
 
 
