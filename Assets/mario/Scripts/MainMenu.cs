@@ -15,6 +15,15 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("OptionsScene");
     }
+
+    public void ExitGame()
+    {
+        BackgroundMusicManager.Instance.StopMusic(); // Detener la música antes de salir
+        Application.Quit();
+
+        Debug.Log("El juego se ha cerrado"); // Mensaje de depuración para asegurarse de que el método se está llamando.
+    }
 }
+
 
 
