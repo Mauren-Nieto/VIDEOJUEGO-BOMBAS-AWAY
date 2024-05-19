@@ -71,6 +71,12 @@ public class GameManager : MonoBehaviour
     {
         gameEnded = true;
 
+        // Detener la música de fondo
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
         if (mario.vidas <= 0 && luigi.vidas <= 0)
         {
             gameOverText.text = "Game Over! Both players lost!";
@@ -78,12 +84,12 @@ public class GameManager : MonoBehaviour
         }
         else if (mario.vidas > luigi.vidas)
         {
-            gameOverText.text = "Player 1 (Mario) is the winner!";
+            gameOverText.text = "Mario is the winner!";
             PlayVictoryAudio(marioWinClip);
         }
         else if (luigi.vidas > mario.vidas)
         {
-            gameOverText.text = "Player 2 (Luigi) is the winner!";
+            gameOverText.text = "Luigi is the winner!";
             PlayVictoryAudio(luigiWinClip);
         }
         else
@@ -139,6 +145,9 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+
+
+
 
 
 
