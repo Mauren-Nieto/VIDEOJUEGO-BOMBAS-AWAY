@@ -6,41 +6,34 @@ public class BulletExplosion : MonoBehaviour
 {
     public float minTimeToExplode = 0.5f;
     public AudioClip explosionSound;
+    public float audioVolume = 1f; // Volumen de sonido
+
     private AudioSource audioSource;
 
-    private void Start()
+    void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
-        Invoke("Explode", minTimeToExplode);
+        StartCoroutine(ExplodeAfterDelay());
     }
 
-    public void Explode()
+    private IEnumerator ExplodeAfterDelay()
     {
-        PlayExplosionSound();
+        yield return new WaitForSeconds(minTimeToExplode);
+        Explode();
+    }
+
+    private void Explode()
+    {
+        // Reproducir sonido de explosión con el volumen ajustado
+        if (explosionSound != null)
+        {
+            audioSource.PlayOneShot(explosionSound, audioVolume);
+        }
+        // Lógica de explosión...
         Destroy(gameObject);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GameManager.Instance.PlayerHit(collision.gameObject.GetComponent<Mario2>());
-            Explode();
-        }
-        else if (collision.gameObject.CompareTag("Isla"))
-        {
-            Explode();
-        }
-    }
-
-    private void PlayExplosionSound()
-    {
-        if (explosionSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(explosionSound);
-        }
-    }
 }
+
 
 
 

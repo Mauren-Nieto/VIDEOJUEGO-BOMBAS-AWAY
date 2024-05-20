@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine;
+
 public class Bullet_Launcher1 : MonoBehaviour
 {
     public Transform LaunchPoint;
@@ -22,6 +24,10 @@ public class Bullet_Launcher1 : MonoBehaviour
 
     private AudioSource audioSource;
 
+    // Variable de volumen para los sonidos
+    [Range(0f, 1f)]
+    public float audioVolume = 1f;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -39,10 +45,10 @@ public class Bullet_Launcher1 : MonoBehaviour
 
     void LaunchBullet()
     {
-        // Reproducir sonido de lanzamiento
+        // Reproducir sonido de lanzamiento con el volumen ajustado
         if (launchSound != null)
         {
-            audioSource.PlayOneShot(launchSound);
+            audioSource.PlayOneShot(launchSound, audioVolume);
         }
 
         // Calcula una posición aleatoria dentro del colisionador de la isla
@@ -63,11 +69,13 @@ public class Bullet_Launcher1 : MonoBehaviour
         BulletExplosion explosion = bullet.AddComponent<BulletExplosion>();
         explosion.minTimeToExplode = minTimeToExplode;
         explosion.explosionSound = explosionSound;
+        explosion.audioVolume = audioVolume; // Pasar el volumen al componente de explosión
 
         // Agrega componente de rebote
         BulletBounce bounce = bullet.AddComponent<BulletBounce>();
         bounce.bounceForce = bounceForce;
         bounce.bounceSound = bounceSound;
+        bounce.audioVolume = audioVolume; // Pasar el volumen al componente de rebote
     }
 
     Vector3 GetRandomPointInCollider(MeshCollider collider)
@@ -80,6 +88,7 @@ public class Bullet_Launcher1 : MonoBehaviour
         return new Vector3(x, y, z);
     }
 }
+
 
 
 

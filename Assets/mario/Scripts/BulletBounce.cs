@@ -6,39 +6,28 @@ public class BulletBounce : MonoBehaviour
 {
     public float bounceForce = 2f;
     public AudioClip bounceSound;
+    public float audioVolume = 1f; // Volumen de sonido
 
-    private Rigidbody rb;
     private AudioSource audioSource;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Isla") || collision.gameObject.CompareTag("Player"))
+        // Reproducir sonido de rebote con el volumen ajustado
+        if (bounceSound != null)
         {
-            // Reproduce el sonido de rebote si hay
-            if (bounceSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(bounceSound);
-            }
-
-            // Aplica una fuerza de rebote
-            Vector3 bounceDirection = Vector3.Reflect(rb.velocity.normalized, collision.contacts[0].normal);
-            rb.velocity = bounceDirection * bounceForce;
-
-            // Hacer que la bala explote al rebotar
-            BulletExplosion explosion = GetComponent<BulletExplosion>();
-            if (explosion != null)
-            {
-                explosion.Explode();
-            }
+            audioSource.PlayOneShot(bounceSound, audioVolume);
         }
+        // Lógica de rebote...
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
     }
 }
+
 
 
 
