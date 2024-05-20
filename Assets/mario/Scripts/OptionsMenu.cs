@@ -8,6 +8,7 @@ public class OptionsMenu : MonoBehaviour
     public Toggle musicOnToggle;
     public Toggle musicOffToggle;
     public GameObject creditsPanel;
+    public float creditsDuration = 5f; // Duración de la animación de créditos
 
     private void Start()
     {
@@ -28,6 +29,15 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Detectar la tecla Escape para volver al menú de opciones
+        if (Input.GetKeyDown(KeyCode.Escape) && creditsPanel.activeSelf)
+        {
+            HideCredits();
+        }
+    }
+
     private void ToggleMusic(bool isOn)
     {
         if (isOn)
@@ -45,8 +55,24 @@ public class OptionsMenu : MonoBehaviour
         if (creditsPanel != null)
         {
             creditsPanel.SetActive(true);
+            StartCoroutine(HideCreditsAfterDelay());
         }
         Debug.Log("Show credits screen");
+    }
+
+    private IEnumerator HideCreditsAfterDelay()
+    {
+        yield return new WaitForSeconds(creditsDuration);
+        HideCredits();
+    }
+
+    private void HideCredits()
+    {
+        if (creditsPanel != null)
+        {
+            creditsPanel.SetActive(false);
+        }
+        Debug.Log("Hide credits screen");
     }
 
     public void BackToMainMenu()
