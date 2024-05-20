@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MainMenu.unity
+    guid: 8ecdb529a76dcb64a806d8f83349afc1
+  - enabled: 1
+    path: Assets/LowPolyWater_Pack/_Demo/DemoScene.unity
+    guid: 5af012a8b7991a84fb99a854db8dfc21
+  - enabled: 1
+    path: Assets/OptionsScene.unity
+    guid: 2567f7ab887ca37498a33bfef4edaef0
+  m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: d9fef30f9343e004e99d0aa4b0d0c31f, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c9a421b9ceb9f1d469c1a17a7cf69f3c, type: 2}
+  m_UseUCBPForAssetBundles: 0

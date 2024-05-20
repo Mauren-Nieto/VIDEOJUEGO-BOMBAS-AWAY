@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b4d72a49ca65ac64b835c09eaa69fd68
+timeCreated: 1474449245
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 127325
+  packageName: Particle Pack
+  packageVersion: 1.7
+  assetPath: Assets/UnityTechnologies/EffectExamples/WeaponEffects/Materials/GoopSplat2.mat
+  uploadId: 564952

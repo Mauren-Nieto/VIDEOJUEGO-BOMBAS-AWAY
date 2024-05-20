@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Mario
+  - Luigi
+  - Bombas
+  - Isla
+  - agua
+  - timer
+  - Text
   layers:
   - Default
   - TransparentFX
