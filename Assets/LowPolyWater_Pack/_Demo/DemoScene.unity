@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9622642, g: 0.9422927, b: 0.9422927, a: 1}
+  m_Color: {r: 0.29830307, g: 0.9547169, b: 0.07025265, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1145,7 +1145,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Luigi
+  m_Text: 'Luigi:'
 --- !u!222 &576070513
 CanvasRenderer:
   m_ObjectHideFlags: 0
