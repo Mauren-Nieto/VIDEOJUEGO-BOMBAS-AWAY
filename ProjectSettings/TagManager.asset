@@ -12,6 +12,7 @@ TagManager:
   - agua
   - timer
   - Text
+  - Island
   layers:
   - Default
   - TransparentFX

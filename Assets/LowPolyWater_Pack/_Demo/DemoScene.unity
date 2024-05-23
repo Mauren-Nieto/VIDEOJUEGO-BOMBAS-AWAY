@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 416815431}
   timerText: {fileID: 299647571}
-  gameDuration: 5
+  gameDuration: 60
   marioWinClip: {fileID: 8300000, guid: fccb23ae19e27f44a94e3a1896684665, type: 3}
   luigiWinClip: {fileID: 8300000, guid: 7536661bbda100c41ba0a74d0fbfa5fc, type: 3}
   gameOverClip: {fileID: 8300000, guid: 90b2d65ca9f3136429f857cdc27f060d, type: 3}
@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275605674657416, guid: 87ba70ffeb5cf0042b9c74cf165df40c, type: 3}
       propertyPath: m_TagString
-      value: Isla
+      value: Island
       objectReference: {fileID: 0}
     - target: {fileID: 4151462079729124, guid: 87ba70ffeb5cf0042b9c74cf165df40c, type: 3}
       propertyPath: m_LocalScale.x
@@ -768,7 +768,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5063774823192369251, guid: db4c7a2f05383004abcbc312ecc092ca, type: 3}
   launchSpeed: 36
   maxLaunchAngle: 45
-  minTimeToExplode: 4
+  minTimeToExplode: 2
   bounceForce: 2
   launchSound: {fileID: 0}
   explosionSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
@@ -1141,6 +1141,7 @@ GameObject:
   - component: {fileID: 569430152}
   - component: {fileID: 569430151}
   - component: {fileID: 569430154}
+  - component: {fileID: 569430155}
   m_Layer: 0
   m_Name: Ocean
   m_TagString: agua
@@ -1231,6 +1232,27 @@ MonoBehaviour:
   waveFrequency: 0.5
   waveLength: 0.75
   waveOriginPosition: {x: 0, y: 0, z: 0}
+--- !u!65 &569430155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569430149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 750, y: 0.99993324, z: 750}
+  m_Center: {x: 0, y: 0.00003325939, z: 0}
 --- !u!1001 &575075042
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2146,11 +2168,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 25
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300148, guid: 3dff5c602fa2a3a45b81246f45003770, type: 3}
 --- !u!54 &1410281117

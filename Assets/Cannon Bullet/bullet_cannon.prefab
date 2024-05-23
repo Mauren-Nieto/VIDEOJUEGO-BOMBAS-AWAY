@@ -88,10 +88,10 @@ PrefabInstance:
       addedObject: {fileID: 7216033227243600222}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1054068665111761776}
+      addedObject: {fileID: -8546761405897302750}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3163450280427329505}
+      addedObject: {fileID: 1054068665111761776}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2206924692701483467}
@@ -149,6 +149,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-8546761405897302750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5063774823192369251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecdad8f15b93f3849805f1cc9ef3637d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 5063774823192369251}
+  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
 --- !u!114 &1054068665111761776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,20 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bounceForce: 100
   bounceSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
---- !u!114 &3163450280427329505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5063774823192369251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f6b99e01861004dad29f2028993edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minTimeToExplode: 100
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
+  audioVolume: 1
 --- !u!81 &-2206924692701483467
 AudioListener:
   m_ObjectHideFlags: 0
