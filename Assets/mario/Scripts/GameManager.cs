@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -54,18 +54,23 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameEnded)
+        if (!gameEnded && gameOverText != null)
         {
-            timeRemaining -= Time.deltaTime;
-            timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
-
-            if (timeRemaining <= 0)
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
+            }
+            else
             {
                 timeRemaining = 0;
                 EndGame();
             }
         }
+
+
     }
+
 
     public void EndGame()
     {
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
 
         gameOverText.gameObject.SetActive(true);
 
-        Bullet_Launcher1[] launchers = FindObjectsOfType<Bullet_Launcher1>();
+        Bullet_Launcher1[] launchers = Object.FindObjectsOfType<Bullet_Launcher1>();
         foreach (var launcher in launchers)
         {
             launcher.enabled = false;
@@ -144,7 +149,97 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
     }
+
+    // Método para reiniciar el juego
+    public void RestartGame()
+    {
+        // Detener la música de fondo
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
+        // Reiniciar el tiempo del juego
+        timeRemaining = gameDuration;
+
+        // Reiniciar las posiciones y vidas de los personajes
+        if (mario != null)
+        {
+            mario.RestartPosition();
+        }
+
+        if (luigi != null)
+        {
+            luigi.RestartPosition();
+        }
+
+        // Ocultar el texto de fin de juego
+        gameOverText.gameObject.SetActive(false);
+
+        // Reiniciar el estado del juego
+        gameEnded = false;
+
+        // Reiniciar el estado de los lanzadores de balas
+        Bullet_Launcher1[] launchers = Object.FindObjectsOfType<Bullet_Launcher1>();
+        foreach (var launcher in launchers)
+        {
+            launcher.enabled = true;
+        }
+
+        // Reiniciar el texto del juego
+        if (timerText != null)
+        {
+            timerText.text = "Time: " + Mathf.Ceil(gameDuration).ToString();
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

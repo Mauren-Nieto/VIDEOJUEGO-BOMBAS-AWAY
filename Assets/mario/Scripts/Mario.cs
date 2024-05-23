@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Mario2 : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class Mario2 : MonoBehaviour
     public float alturaAgua = -1.0f;
 
     private Vector3 ultimaPosicionIsla;
-    private Vector3 posicionInicial;
+    public Vector3 PosicionInicial { get; private set; }
 
     // Vidas del personaje
     public int vidas = 3;
@@ -48,7 +49,7 @@ public class Mario2 : MonoBehaviour
         }
 
         // Guardar la posición inicial del personaje
-        posicionInicial = transform.position;
+        PosicionInicial = transform.position;
 
         // Encontrar el GameManager
         gameManager = FindObjectOfType<GameManager>();
@@ -132,8 +133,7 @@ public class Mario2 : MonoBehaviour
         if (islaCollider != null)
         {
             if (!islaCollider.bounds.Contains(new Vector3(posicionActual.x, islaCollider.bounds.center.y, posicionActual.z)))
-            {
-                // Si está fuera de los límites, hacemos que caiga al agua
+            {// Si está fuera de los límites, hacemos que caiga al agua
                 CaerAlAgua();
             }
         }
@@ -148,7 +148,7 @@ public class Mario2 : MonoBehaviour
         if (vidas > 0)
         {
             // Reiniciar la posición del personaje al punto inicial
-            transform.position = posicionInicial;
+            transform.position = PosicionInicial;
 
             // También podrías aplicar una animación de caída, sonidos, etc.
             animator.SetTrigger("caer"); // Asegúrate de tener este parámetro en tu animador
@@ -180,10 +180,38 @@ public class Mario2 : MonoBehaviour
         else
         {
             // Reiniciar la posición del personaje al punto inicial
-            transform.position = posicionInicial;
+            transform.position = PosicionInicial;
         }
     }
+
+    public void RestartPosition()
+    {
+        // Reiniciar la posición del personaje al punto inicial
+        transform.position = PosicionInicial;
+
+        // Reiniciar vidas para ambos personajes
+        vidas = 3;
+
+        // Habilitar el controlador para permitir el movimiento
+        controller.enabled = true;
+
+        // Restablecer la animación de caminar
+        animator.SetBool("caminando", false);
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
