@@ -170,11 +170,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 416815431}
   timerText: {fileID: 299647571}
-  gameDuration: 60
-  marioWinClip: {fileID: 0}
-  luigiWinClip: {fileID: 0}
-  gameOverClip: {fileID: 0}
-  tieClip: {fileID: 0}
+  gameDuration: 5
+  marioWinClip: {fileID: 8300000, guid: fccb23ae19e27f44a94e3a1896684665, type: 3}
+  luigiWinClip: {fileID: 8300000, guid: 7536661bbda100c41ba0a74d0fbfa5fc, type: 3}
+  gameOverClip: {fileID: 8300000, guid: 90b2d65ca9f3136429f857cdc27f060d, type: 3}
+  tieClip: {fileID: 8300000, guid: 424f65b0f6c3ef24eb2fd2d3c4b06133, type: 3}
 --- !u!1001 &88483560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -841,7 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.81886786, g: 0.30703205, b: 0.023175366, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27440acb54a18e846a0a043f36ad9ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 27461302}
 --- !u!1 &569084842 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 259f2e241f158c44abe7be2e8f54c4dc, type: 3}

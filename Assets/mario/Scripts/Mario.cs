@@ -199,8 +199,6 @@ public class Mario2 : MonoBehaviour
         animator.SetBool("caminando", false);
     }
 
-
-
 }
 
 
