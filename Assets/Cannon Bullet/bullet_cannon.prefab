@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ee686e93931bd0147b71258c2002cbad, type: 3}
       propertyPath: m_TagString
-      value: Bombas
+      value: Bullet
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -116,7 +116,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
@@ -148,7 +148,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &-8546761405897302750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecdad8f15b93f3849805f1cc9ef3637d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionEffect: {fileID: 5063774823192369251}
-  explosionSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
+  explosionEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+  explosionSound: {fileID: 0}
+  audioVolume: 1
 --- !u!114 &1054068665111761776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 612e5671510dd104493b9e52028b9c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 100
-  bounceSound: {fileID: 8300000, guid: a198e4db069d65648adceb6059b04590, type: 3}
-  audioVolume: 1
+  bounceForce: 2
+  bounceSound: {fileID: 8300000, guid: 79ef974cf9b460c448819a4aba1d294b, type: 3}
+  audioVolume: 0.2
 --- !u!81 &-2206924692701483467
 AudioListener:
   m_ObjectHideFlags: 0

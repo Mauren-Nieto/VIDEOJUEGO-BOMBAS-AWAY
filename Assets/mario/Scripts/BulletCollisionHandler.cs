@@ -9,6 +9,8 @@ public class BulletCollisionHandler : MonoBehaviour
     public AudioClip explosionSound;
     public float audioVolume = 1f;
 
+    private bool hasExploded = false;
+
     void Start()
     {
         audioSource = gameObject.AddComponent<AudioSource>();
@@ -16,31 +18,39 @@ public class BulletCollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Verificar colisión con personajes o la isla
-        if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi") || collision.gameObject.CompareTag("Island"))
+        if (!hasExploded && !GameManager.Instance.GameEnded)
         {
-            Explode();
-
-            // Restar vida al personaje si es Mario o Luigi
-            if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi"))
+            // Verificar colisión con personajes o la isla
+            if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi") || collision.gameObject.CompareTag("Island"))
             {
-                Mario2 character = collision.gameObject.GetComponent<Mario2>();
-                character.RestarVida(1);
+                Explode();
 
-                if (character.vidas <= 0)
+                // Restar vida al personaje si es Mario o Luigi
+                if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi"))
                 {
-                    GameManager.Instance.EndGame();
+                    Mario2 character = collision.gameObject.GetComponent<Mario2>();
+                    character.RestarVida(1);
+
+                    if (character.vidas <= 0)
+                    {
+                        GameManager.Instance.EndGame();
+                    }
                 }
             }
         }
     }
 
-    private void Explode()
+    public void Explode()
     {
+        if (GameManager.Instance.GameEnded) return;
+
+        hasExploded = true;
+
         // Instanciar el efecto de explosión
         if (explosionEffect != null)
         {
-            Instantiate(explosionEffect, transform.position, transform.rotation);
+            GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
+            Destroy(explosion, 3f); // Asegurar que la explosión se destruya después de 3 segundos
         }
 
         // Reproducir sonido de explosión
@@ -50,8 +60,13 @@ public class BulletCollisionHandler : MonoBehaviour
         }
 
         // Destruir la bala
-        Destroy(gameObject);
+        Destroy(gameObject, 0.5f); // Delay para que el sonido se reproduzca
     }
 }
+
+
+
+
+
 
 

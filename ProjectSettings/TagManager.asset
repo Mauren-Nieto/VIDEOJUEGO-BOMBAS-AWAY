@@ -13,6 +13,7 @@ TagManager:
   - timer
   - Text
   - Island
+  - Bullet
   layers:
   - Default
   - TransparentFX

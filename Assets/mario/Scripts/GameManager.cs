@@ -67,10 +67,7 @@ public class GameManager : MonoBehaviour
                 EndGame();
             }
         }
-
-
     }
-
 
     public void EndGame()
     {
@@ -109,6 +106,19 @@ public class GameManager : MonoBehaviour
         foreach (var launcher in launchers)
         {
             launcher.enabled = false;
+        }
+
+        // Detener y destruir todas las balas y efectos de explosión
+        BulletCollisionHandler[] bullets = FindObjectsOfType<BulletCollisionHandler>();
+        foreach (var bullet in bullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("ExplosionEffect");
+        foreach (var explosion in explosions)
+        {
+            Destroy(explosion);
         }
     }
 
@@ -150,7 +160,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Método para reiniciar el juego
     public void RestartGame()
     {
         // Detener la música de fondo
@@ -186,6 +195,19 @@ public class GameManager : MonoBehaviour
             launcher.enabled = true;
         }
 
+        // Detener y destruir todas las balas y efectos de explosión
+        BulletCollisionHandler[] activeBullets = FindObjectsOfType<BulletCollisionHandler>();
+        foreach (var bullet in activeBullets)
+        {
+            Destroy(bullet.gameObject);
+        }
+
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("ExplosionEffect");
+        foreach (var explosion in explosions)
+        {
+            Destroy(explosion);
+        }
+
         // Reiniciar el texto del juego
         if (timerText != null)
         {
@@ -193,6 +215,12 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+
+
+
+
+
+
 
 
 

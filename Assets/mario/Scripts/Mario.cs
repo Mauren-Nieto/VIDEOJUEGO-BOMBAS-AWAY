@@ -20,19 +20,13 @@ public class Mario2 : MonoBehaviour
 
     public Personaje personaje;
 
-    // Referencia al MeshCollider de la isla
     public MeshCollider islaCollider;
-
-    // Referencia al GameObject de la isla
     public Transform islaTransform;
-
-    // Altura del agua
     public float alturaAgua = -1.0f;
 
     private Vector3 ultimaPosicionIsla;
     public Vector3 PosicionInicial { get; private set; }
 
-    // Vidas del personaje
     public int vidas = 3;
 
     private GameManager gameManager;
@@ -48,10 +42,7 @@ public class Mario2 : MonoBehaviour
             ultimaPosicionIsla = islaTransform.position;
         }
 
-        // Guardar la posición inicial del personaje
         PosicionInicial = transform.position;
-
-        // Encontrar el GameManager
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -61,48 +52,20 @@ public class Mario2 : MonoBehaviour
         {
             animator.SetBool("caminando", false);
 
-            // Mover el personaje hacia adelante
-            if (personaje == Personaje.Mario && Input.GetKey(KeyCode.W))
+            // Movimiento
+            if (personaje == Personaje.Mario)
             {
-                controller.Move(transform.forward * Time.deltaTime * velocidad);
-                animator.SetBool("caminando", true);
+                if (Input.GetKey(KeyCode.W)) MoveForward();
+                if (Input.GetKey(KeyCode.S)) MoveBackward();
+                if (Input.GetKey(KeyCode.D)) RotateRight();
+                if (Input.GetKey(KeyCode.A)) RotateLeft();
             }
-            else if (personaje == Personaje.Luigi && Input.GetKey(KeyCode.UpArrow))
+            else if (personaje == Personaje.Luigi)
             {
-                controller.Move(transform.forward * Time.deltaTime * velocidad);
-                animator.SetBool("caminando", true);
-            }
-
-            // Mover el personaje hacia atrás
-            if (personaje == Personaje.Mario && Input.GetKey(KeyCode.S))
-            {
-                controller.Move(-transform.forward * Time.deltaTime * velocidad);
-                animator.SetBool("caminando", true);
-            }
-            else if (personaje == Personaje.Luigi && Input.GetKey(KeyCode.DownArrow))
-            {
-                controller.Move(-transform.forward * Time.deltaTime * velocidad);
-                animator.SetBool("caminando", true);
-            }
-
-            // Rotar el personaje a la derecha
-            if (personaje == Personaje.Mario && Input.GetKey(KeyCode.D))
-            {
-                transform.Rotate(transform.up, rotacion * Time.deltaTime);
-            }
-            else if (personaje == Personaje.Luigi && Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.Rotate(transform.up, rotacion * Time.deltaTime);
-            }
-
-            // Rotar el personaje a la izquierda
-            if (personaje == Personaje.Mario && Input.GetKey(KeyCode.A))
-            {
-                transform.Rotate(transform.up, -rotacion * Time.deltaTime);
-            }
-            else if (personaje == Personaje.Luigi && Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.Rotate(transform.up, -rotacion * Time.deltaTime);
+                if (Input.GetKey(KeyCode.UpArrow)) MoveForward();
+                if (Input.GetKey(KeyCode.DownArrow)) MoveBackward();
+                if (Input.GetKey(KeyCode.RightArrow)) RotateRight();
+                if (Input.GetKey(KeyCode.LeftArrow)) RotateLeft();
             }
 
             // Sincronizar movimiento con la isla
@@ -117,12 +80,39 @@ public class Mario2 : MonoBehaviour
         }
     }
 
+    private void MoveForward()
+    {
+        controller.Move(transform.forward * Time.deltaTime * velocidad);
+        animator.SetBool("caminando", true);
+    }
+
+    private void MoveBackward()
+    {
+        controller.Move(-transform.forward * Time.deltaTime * velocidad);
+        animator.SetBool("caminando", true);
+    }
+
+    private void RotateRight()
+    {
+        transform.Rotate(transform.up, rotacion * Time.deltaTime);
+    }
+
+    private void RotateLeft()
+    {
+        transform.Rotate(transform.up, -rotacion * Time.deltaTime);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("moneda"))
         {
             Destroy(other.gameObject);
             audioSource.Play();
+        }
+        else if (other.CompareTag("Bullet"))
+        {
+            other.GetComponent<BulletCollisionHandler>().Explode();
+            RestarVida(1);
         }
     }
 
@@ -133,7 +123,7 @@ public class Mario2 : MonoBehaviour
         if (islaCollider != null)
         {
             if (!islaCollider.bounds.Contains(new Vector3(posicionActual.x, islaCollider.bounds.center.y, posicionActual.z)))
-            {// Si está fuera de los límites, hacemos que caiga al agua
+            {
                 CaerAlAgua();
             }
         }
@@ -141,27 +131,20 @@ public class Mario2 : MonoBehaviour
 
     private void CaerAlAgua()
     {
-        // Restar una vida al personaje
         vidas--;
 
-        // Verificar si el personaje aún tiene vidas restantes
         if (vidas > 0)
         {
-            // Reiniciar la posición del personaje al punto inicial
             transform.position = PosicionInicial;
-
-            // También podrías aplicar una animación de caída, sonidos, etc.
-            animator.SetTrigger("caer"); // Asegúrate de tener este parámetro en tu animador
+            animator.SetTrigger("caer");
         }
         else
         {
-            // El personaje ha perdido todas las vidas
             if (gameManager != null)
             {
                 gameManager.EndGame();
             }
 
-            // Desactivar el controlador para detener el movimiento
             controller.enabled = false;
             animator.SetBool("caminando", false);
             animator.SetTrigger("gameOver");
@@ -179,27 +162,19 @@ public class Mario2 : MonoBehaviour
         }
         else
         {
-            // Reiniciar la posición del personaje al punto inicial
             transform.position = PosicionInicial;
         }
     }
 
     public void RestartPosition()
     {
-        // Reiniciar la posición del personaje al punto inicial
         transform.position = PosicionInicial;
-
-        // Reiniciar vidas para ambos personajes
         vidas = 3;
-
-        // Habilitar el controlador para permitir el movimiento
         controller.enabled = true;
-
-        // Restablecer la animación de caminar
         animator.SetBool("caminando", false);
     }
-
 }
+
 
 
 
