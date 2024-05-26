@@ -18,7 +18,7 @@ public class BulletCollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!hasExploded && !GameManager.Instance.GameEnded)
+        if (!hasExploded)
         {
             // Verificar colisión con personajes o la isla
             if (collision.gameObject.CompareTag("Mario") || collision.gameObject.CompareTag("Luigi") || collision.gameObject.CompareTag("Island"))
@@ -42,15 +42,10 @@ public class BulletCollisionHandler : MonoBehaviour
 
     public void Explode()
     {
-        if (GameManager.Instance.GameEnded) return;
-
-        hasExploded = true;
-
         // Instanciar el efecto de explosión
         if (explosionEffect != null)
         {
-            GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
-            Destroy(explosion, 3f); // Asegurar que la explosión se destruya después de 3 segundos
+            Instantiate(explosionEffect, transform.position, transform.rotation);
         }
 
         // Reproducir sonido de explosión
@@ -59,10 +54,20 @@ public class BulletCollisionHandler : MonoBehaviour
             audioSource.PlayOneShot(explosionSound, audioVolume);
         }
 
+        hasExploded = true;
+
         // Destruir la bala
         Destroy(gameObject, 0.5f); // Delay para que el sonido se reproduzca
     }
+
+    public void ResetExplosion()
+    {
+        hasExploded = false;
+    }
 }
+
+
+
 
 
 

@@ -269,13 +269,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Bombas Away\r\nCreado por \"Gatos Agradables\"\r\nEquipo de Desarrollo:\r\nDaniel
+  m_Text: "Bombas Away\r\nCreado por \"Gatos Agradables\"\r\nEquipo de Desarrollo:\r\nDaniela
     Bernal\r\nProgramador Principal y Dise\xF1ador de Niveles\r\n\r\nPaula Carvajal\r\nArtista
     de Concepto y Dise\xF1adora de Personajes\r\n\r\nDiego Rojas\r\nIngeniero de
     Sonido y Desarrollador de la Jugabilidad\r\n\r\nJaime Arango\r\nDise\xF1ador
     de Interfaz de Usuario y Programador de la IA\r\n\r\nAgradecimientos Especiales:\r\nHendrys
-    Fabian Tobar\r\nTutor y Mentor del Curso\r\nCurso:\r\n\"Programaci\xF3n de Videojuegos\"\r\nUNAD
-    (Universidad Nacional Abierta y a Distancia)"
+    Fabian Tobar\r\nTutor y Mentor del Curso\n\r\nCurso:\r\n\"Programaci\xF3n de
+    Videojuegos\"\r\nUNAD (Universidad Nacional Abierta y a Distancia)"
 --- !u!222 &68513558
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -804,7 +804,7 @@ MonoBehaviour:
   musicOnToggle: {fileID: 1415516428}
   musicOffToggle: {fileID: 256751430}
   creditsPanel: {fileID: 408703256}
-  creditsDuration: 14
+  creditsDuration: 24
 --- !u!1 &714045208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2193,6 +2193,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1919631212}
   m_CullTransparentMesh: 1
+--- !u!1 &1944353235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1944353237}
+  - component: {fileID: 1944353236}
+  m_Layer: 0
+  m_Name: BackgroundMusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1944353236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944353235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5a59b7472f43674a8ca1869f2ecc645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1944353237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944353235}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1025.4004, y: 565.2676, z: 9.982333}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2007451123
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,3 +2460,4 @@ SceneRoots:
   - {fileID: 715286496}
   - {fileID: 875109429}
   - {fileID: 709797289}
+  - {fileID: 1944353237}
